@@ -1,0 +1,64 @@
+services:
+  website:
+    image: ruby:3.0.1-alpine
+    build: .
+    # command: bundle exec rails s -b 0.0.0.0
+    env_file:
+      - ".env"
+    ports:
+      - "3025:3000"
+    container_name: api-ruby-resume-be
+    environment:
+      VIRTUAL_HOST: ai-resume.api.dan1d.dev, www.ai-resume.api.dan1d.dev
+      VIRTUAL_PORT: 3025
+      LETSENCRYPT_HOST: ai-resume.api.dan1d.dev, www.ai-resume.api.dan1d.dev
+      LETSENCRYPT_EMAIL: danielfromarg@gmail.com
+      DATABASE_URL: postgres://resume-app@postgres/resume-app
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:9.6.2-alpine
+    environment:
+      POSTGRES_USER: resume-app
+      POSTGRES_DB: resume-app
+  redis:
+    image: "redis:7.0.8-alpine"
+    command: redis-server
+    volumes:
+      - "redis:/data"
+
+  cable:
+    depends_on:
+      - "redis"
+    build: .
+    command: puma -p 28080 cable/config.ru
+    ports:
+      - "28080:28080"
+    volumes:
+      - ".:/app"
+    env_file:
+      - ".env"
+
+  sidekiq:
+    depends_on:
+      - "postgres"
+      - "redis"
+    build: .
+    command: sidekiq -C config/sidekiq.yml
+    volumes:
+      - ".:/app"
+    env_file:
+      - ".env"
+
+volumes:
+  redis:
+  postgres:
+
+networks:
+  default:
+    # Use a custom driver
+    name: dan1d_network
+    driver: bridge
