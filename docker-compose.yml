@@ -35,10 +35,11 @@ services:
   cable:
     environment:
       DATABASE_URL: postgres://resume-app@postgres/resume-app
+      PORT: 28080
     depends_on:
       - "redis"
     build: .
-    command: puma -p 28080 -C config/puma.rb
+    command: puma -p 28080 -C config/puma_cable.rb
     ports:
       - "28080:28080"
     volumes:
