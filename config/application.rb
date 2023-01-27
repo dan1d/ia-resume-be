@@ -35,5 +35,7 @@ module IaResumeBe
     config.action_cable.url = "/cable"
     config.hosts << "api.ia-resume.com"
     config.hosts << "www.api.ia-resume.com"
+
+    config.force_ssl = true
   end
 end
