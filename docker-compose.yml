@@ -2,11 +2,11 @@ services:
   website:
     image: ruby:3.0.1-alpine
     build: .
-    command: bundle exec rails s -b 0.0.0.0
+    # command: bundle exec rails s -b 0.0.0.0
     env_file:
       - ".env"
     ports:
-      - "3025:3025"
+      - "8080:3025"
     container_name: api-ruby-resume-be
     environment:
       VIRTUAL_HOST: api.ai-resume.com, www.api.ai-resume.com
