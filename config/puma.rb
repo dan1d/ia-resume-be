@@ -44,7 +44,7 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 #
 # preload_app!
 
-ssl_bind '127.0.0.1', port, { key: "./config/server.key", cert: "./config/server.crt" }
+ssl_bind '127.0.0.1', '9292', { key: "./config/server.key", cert: "./config/server.crt" }
 
 # if ssl_key && ssl_cert
 #   bind "ssl://#{ip_addr}:#{port}?key=#{ssl_key}&cert=#{ssl_cert}"
