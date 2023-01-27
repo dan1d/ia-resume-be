@@ -2,7 +2,7 @@ services:
   website:
     image: ruby:3.0.1-alpine
     build: .
-    # command: bundle exec rails s -b 0.0.0.0
+    command: bundle exec rails s -b 0.0.0.0
     env_file:
       - ".env"
     ports:
