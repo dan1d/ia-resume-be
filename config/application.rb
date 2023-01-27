@@ -33,6 +33,7 @@ module IaResumeBe
 
     config.action_cable.disable_request_forgery_protection = true
     config.action_cable.url = "/cable"
-
+    config.hosts << "api.ia-resume.com"
+    config.hosts << "www.api.ia-resume.com"
   end
 end
