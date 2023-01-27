@@ -3,6 +3,11 @@
 # Any libraries that use thread pools should be configured to match
 # the maximum value specified for Puma. Default is set to 5 threads for minimum
 # and maximum; this matches the default thread size of Active Record.
+ssl_key = ENV['SSL_KEY']
+ssl_cert = ENV['SSL_CERT']
+ip_addr = "127.0.0.0"
+port = ENV.fetch("PORT") { 3000 }
+
 #
 max_threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
 min_threads_count = ENV.fetch("RAILS_MIN_THREADS") { max_threads_count }
@@ -38,6 +43,12 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 # process behavior so workers use less memory.
 #
 # preload_app!
+if ssl_key.present? && ssl_cert.present?
+  bind "ssl://#{ip_addr}:#{port}?key=#{ssl_key}&cert=#{ssl_cert}"
+else
+  bind "tcp://#{ip_addr}:#{port}"
+end
+
 
 # Allow puma to be restarted by `bin/rails restart` command.
 plugin :tmp_restart

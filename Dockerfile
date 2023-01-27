@@ -7,4 +7,4 @@ COPY Gemfile.lock ./Gemfile.lock
 RUN bundle install -j 20
 COPY . .
 
-# CMD puma -C config/puma.rb
+CMD puma -C config/puma.rb
