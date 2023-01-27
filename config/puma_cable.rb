@@ -3,6 +3,7 @@
 # Any libraries that use thread pools should be configured to match
 # the maximum value specified for Puma. Default is set to 5 threads for minimum
 # and maximum; this matches the default thread size of Active Record.
+puts "CABLEEEEEEEEEE"
 ssl_key = ENV['SSL_KEY']
 ssl_cert = ENV['SSL_CERT']
 ip_addr = "127.0.0.0"
@@ -44,7 +45,9 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 #
 # preload_app!
 
-ssl_bind '0.0.0.0', '28080', { key: "./config/server.key", cert: "./config/server.crt" }
+puts ">>>>>>>>>>>>>>>>>>>>"
+# ssl_bind '0.0.0.0', '28082', { key: "./config/server.key", cert: "./config/server.crt" }
+bind "ssl://#{ip_addr}:28082?key=./config/server.key&cert=./config/server.crt"
 
 # if ssl_key && ssl_cert
 #   bind "ssl://#{ip_addr}:#{port}?key=#{ssl_key}&cert=#{ssl_cert}"
