@@ -6,7 +6,7 @@
 ssl_key = ENV['SSL_KEY']
 ssl_cert = ENV['SSL_CERT']
 ip_addr = "127.0.0.0"
-port = ENV.fetch("PORT") { 3000 }
+port = ENV.fetch("PORT") { 4001 }
 
 #
 max_threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
