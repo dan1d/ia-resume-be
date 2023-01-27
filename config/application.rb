@@ -32,9 +32,13 @@ module IaResumeBe
     config.active_job.queue_adapter = :sidekiq
 
     config.action_cable.disable_request_forgery_protection = true
-    config.action_cable.url = "/cable"
+    # config.action_cable.url = "/cable"
     config.hosts << "api.ia-resume.com"
     config.hosts << "www.api.ia-resume.com"
+    config.hosts << "api.ia-resume.com:28080"
+    config.hosts << "www.api.ia-resume.com:28080"
+    config.action_cable.url = [/ws:\/\/*/, /wss:\/\/*/]
+    config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]  
 
     config.force_ssl = true
   end
