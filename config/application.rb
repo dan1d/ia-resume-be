@@ -30,12 +30,6 @@ module IaResumeBe
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
 
     config.active_job.queue_adapter = :sidekiq
-    config.middleware.use Rack::Cors do
-      allow do
-        origins '*'
-        resource '*', :headers => :any, :methods => [:get, :post, :delete, :put, :options]
-      end
-    end
 
     config.action_cable.disable_request_forgery_protection = true
     config.action_cable.url = "/cable"
