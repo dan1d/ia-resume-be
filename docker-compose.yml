@@ -10,7 +10,7 @@ services:
     container_name: api-ruby-resume-be
     environment:
       VIRTUAL_HOST: api.ai-resume.com, www.api.ai-resume.com
-      VIRTUAL_PORT: 8080
+      VIRTUAL_PORT: 443
       LETSENCRYPT_HOST: api.ai-resume.com, www.api.ai-resume.com
       LETSENCRYPT_EMAIL: danielfromarg@gmail.com
       DATABASE_URL: postgres://resume-app@postgres/resume-app
