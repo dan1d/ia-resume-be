@@ -43,11 +43,14 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 # process behavior so workers use less memory.
 #
 # preload_app!
-if ssl_key && ssl_cert
-  bind "ssl://#{ip_addr}:#{port}?key=#{ssl_key}&cert=#{ssl_cert}"
-else
-  bind "tcp://#{ip_addr}:#{port}"
-end
+
+ssl_bind '127.0.0.1', port, { key: "./config/server.key", cert: "./config/server.crt" }
+
+# if ssl_key && ssl_cert
+#   bind "ssl://#{ip_addr}:#{port}?key=#{ssl_key}&cert=#{ssl_cert}"
+# else
+#   bind "tcp://#{ip_addr}:#{port}"
+# end
 
 
 # Allow puma to be restarted by `bin/rails restart` command.
