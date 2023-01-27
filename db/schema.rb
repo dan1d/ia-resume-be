@@ -19,6 +19,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_26_223507) do
     t.string "skills", null: false
     t.string "experience", null: false
     t.string "job_title", null: false
+    t.text "ia_description"
+    t.text "ia_experience"
+    t.text "ia_skills"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

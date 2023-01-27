@@ -1,18 +1,19 @@
-class ResumesController < ApplicationController
+class Api::V1::ResumesController < ApplicationController
 
   def index
     resources = Resume.limit(10).last
-    respond_to do |format|
-      format.json { render json: resources }
-    end
+    render json: resources
+  end
+
+  def show
+    resource = Resume.find(params[:id])
+    render json: resource
   end
 
   def create
     resource = Resume.new(permited_params)
     if resource.save
-      respond_to do |format|
-        format.json { render json: resource }      
-      end
+      render json: resource
     else 
       head 403
     end

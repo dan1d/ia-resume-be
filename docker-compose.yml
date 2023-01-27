@@ -9,9 +9,9 @@ services:
       - "3025:3000"
     container_name: api-ruby-resume-be
     environment:
-      VIRTUAL_HOST: ai-resume.api.dan1d.dev, www.ai-resume.api.dan1d.dev
+      VIRTUAL_HOST: api.ai-resume.com, www.api.ai-resume.com
       VIRTUAL_PORT: 3025
-      LETSENCRYPT_HOST: ai-resume.api.dan1d.dev, www.ai-resume.api.dan1d.dev
+      LETSENCRYPT_HOST: api.ai-resume.com, www.api.ai-resume.com
       LETSENCRYPT_EMAIL: danielfromarg@gmail.com
       DATABASE_URL: postgres://resume-app@postgres/resume-app
     volumes:
@@ -31,6 +31,8 @@ services:
       - "redis:/data"
 
   cable:
+    environment:
+      DATABASE_URL: postgres://resume-app@postgres/resume-app
     depends_on:
       - "redis"
     build: .
@@ -43,6 +45,8 @@ services:
       - ".env"
 
   sidekiq:
+    environment:
+      DATABASE_URL: postgres://resume-app@postgres/resume-app
     depends_on:
       - "postgres"
       - "redis"

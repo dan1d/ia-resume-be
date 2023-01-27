@@ -5,12 +5,12 @@ class Resume < ApplicationRecord
 
   def save_skills!
     result = service.get_resume_skills
-    result.update_attribute(:ia_skills, result)
+    update_attribute(:ia_skills, result)
   end
 
   def save_short_description!
     result = service.get_resume_short
-    result.update_attribute(:ia_description, result)
+    update_attribute(:ia_description, result)
   end
 
   def save_experience!
@@ -21,10 +21,12 @@ class Resume < ApplicationRecord
   private
 
   def extract_data
-    ResumeGenerator.new(self.id).perform_now
+    SkillsGeneratorJob.perform_later(self.id)
+    ResumeIntroGeneratorJob.perform_later(self.id)
+    ExperienceGeneratorJob.perform_later(self.id)
   end
 
   def service
-    @service = BotService.new(resume: resume)
+    @service = BotService.new(resume: self)
   end
 end

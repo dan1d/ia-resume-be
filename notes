@@ -1,0 +1,5 @@
+docker-compose run website rake routes
+docker-compose run website rake db:migrate
+docker-compose run website rails console
+
+ActionCable.server.broadcast "resumes_2", {body: Resume.find(2).as_json, event: 'updated'}

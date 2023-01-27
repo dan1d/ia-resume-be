@@ -12,7 +12,9 @@ gem "pg"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 gem 'sidekiq'
-
+gem "ruby-openai"
+gem 'rack-cors'
+gem 'redis'
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 

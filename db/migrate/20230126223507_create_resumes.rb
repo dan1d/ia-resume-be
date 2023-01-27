@@ -7,7 +7,7 @@ class CreateResumes < ActiveRecord::Migration[7.0]
       t.string :job_title, null: false
 
       t.text :ia_description
-      t.text :ia_description
+      t.text :ia_experience
       t.text :ia_skills
 
       t.timestamps
