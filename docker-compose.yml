@@ -6,7 +6,6 @@ services:
     env_file:
       - ".env"
     ports:
-      - "8080:4001"
       - '4001:4001'
     container_name: api-ruby-resume-be
     environment:
