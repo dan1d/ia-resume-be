@@ -43,7 +43,7 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 # process behavior so workers use less memory.
 #
 # preload_app!
-if ssl_key.present? && ssl_cert.present?
+if ssl_key && ssl_cert
   bind "ssl://#{ip_addr}:#{port}?key=#{ssl_key}&cert=#{ssl_cert}"
 else
   bind "tcp://#{ip_addr}:#{port}"
