@@ -6,15 +6,15 @@ services:
     env_file:
       - ".env"
     ports:
-      - "8080:3025"
+      - "8080:443"
     container_name: api-ruby-resume-be
     environment:
       VIRTUAL_HOST: api.ai-resume.com, www.api.ai-resume.com
-      VIRTUAL_PORT: 3025
+      VIRTUAL_PORT: 8080
       LETSENCRYPT_HOST: api.ai-resume.com, www.api.ai-resume.com
       LETSENCRYPT_EMAIL: danielfromarg@gmail.com
       DATABASE_URL: postgres://resume-app@postgres/resume-app
-      PORT: 3025
+      PORT: 443
     volumes:
       - .:/app
     depends_on:
