@@ -38,7 +38,7 @@ services:
     depends_on:
       - "redis"
     build: .
-    command: puma -p 28080 cable/config.ru -C config/puma.rb
+    command: puma -p 28080 -C config/puma.rb
     ports:
       - "28080:28080"
     volumes:
