@@ -45,5 +45,16 @@ module IaResumeBe
     config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
     config.action_cable.allow_same_origin_as_host = true
     config.action_cable.url = "wss://api.ia-resume.com:28080/cable"
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins "*"
+    
+        resource "*",
+          headers: :any,
+          methods: [:get, :post, :put, :patch, :delete, :options, :head]
+      end
+    end
+    
   end
 end
