@@ -1,5 +1,10 @@
 services:
   website:
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.website.rule=Host(`api.ia-resume.com, www.api.ia-resume.com`)'
+      - 'traefik.http.routers.website.tls=true'
+      - 'traefik.http.routers.website.tls.certresolver=lets-encrypt'
     image: ruby:3.0.1-alpine
     build: 
       context: .
@@ -66,14 +71,14 @@ services:
     env_file:
       - ".env"
 
-  nginx:
-    build:
-      context: .
-      dockerfile: ./docker/web/Dockerfile
-    depends_on:
-      - website
-    ports:
-      - 80:80
+  # nginx:
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker/web/Dockerfile
+  #   depends_on:
+  #     - website
+  #   ports:
+  #     - 80:80
 
 volumes:
   redis:
