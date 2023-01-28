@@ -9,6 +9,7 @@ services:
       - ".env"
     ports:
       - '3000:3000'
+      - '9292:9292'
     container_name: api-ruby-resume-be
     environment:
       VIRTUAL_HOST: api.ai-resume.com, www.api.ai-resume.com
