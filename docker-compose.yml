@@ -29,6 +29,7 @@ services:
       LETSENCRYPT_EMAIL: danielfromarg@gmail.com
       DATABASE_URL: postgres://resume-app@postgres/resume-app
       PORT: 3000
+      RAILS_ENV: production
     volumes:
       - .:/app
     depends_on:
