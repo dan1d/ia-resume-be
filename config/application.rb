@@ -35,14 +35,14 @@ module IaResumeBe
     # config.action_cable.url = "/cable"
     config.hosts << "api.ia-resume.com"
     config.hosts << "www.api.ia-resume.com"
-    config.hosts << "api.ia-resume.com:28080"
-    config.hosts << "www.api.ia-resume.com:28080"
+    config.hosts << "api.ia-resume.com:28082"
+    config.hosts << "www.api.ia-resume.com:28082"
     config.action_cable.url = [/ws:\/\/*/, /wss:\/\/*/]
     config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
     config.force_ssl = true
     config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
     config.action_cable.allow_same_origin_as_host = true
-    config.action_cable.url = "wss://api.ia-resume.com:28080/cable"
+    config.action_cable.url = "wss://api.ia-resume.com:28082/cable"
 
     config.force_ssl = true
   end
