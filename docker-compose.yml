@@ -1,5 +1,5 @@
 services:
-  website:
+  api:
     labels:
       # - 'traefik.enable=true'
       # - 'traefik.http.routers.website.rule=Host(`api.ia-resume.com, www.api.ia-resume.com`)'
