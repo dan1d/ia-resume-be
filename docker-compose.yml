@@ -50,6 +50,7 @@ services:
     environment:
       DATABASE_URL: postgres://resume-app@postgres/resume-app
       PORT: 28080
+      RAILS_ENV: production
     depends_on:
       - "redis"
     build: 
@@ -65,6 +66,7 @@ services:
 
   sidekiq:
     environment:
+      RAILS_ENV: production
       DATABASE_URL: postgres://resume-app@postgres/resume-app
     depends_on:
       - "postgres"
