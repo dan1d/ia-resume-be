@@ -49,6 +49,17 @@ services:
       - "redis:/data"
 
   cable:
+    labels:
+        # - 'traefik.enable=true'
+        # - 'traefik.http.routers.website.rule=Host(`api.ia-resume.com, www.api.ia-resume.com`)'
+        # - 'traefik.http.routers.website.tls=true'
+        # - 'traefik.http.routers.website.tls.certresolver=lets-encrypt'
+          # labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.ws.rule=Host(`ws.ia-resume.com`, `www.ws.ia-resume.com`)"
+        - "traefik.http.routers.ws.entrypoints=websecure,ws,wss"
+        - "traefik.http.routers.ws.tls.certresolver=myresolver"
+        - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
     environment:
       DATABASE_URL: postgres://resume-app@postgres/resume-app
       PORT: 28080

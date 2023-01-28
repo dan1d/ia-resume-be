@@ -1,6 +1,4 @@
 FROM ruby:3.0.1-alpine
 
-RUN echo 'DOCKER CABLE (!?'
-
 CMD puma -C config/puma_cable.rb
 
