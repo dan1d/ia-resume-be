@@ -61,6 +61,8 @@ services:
         - "traefik.http.routers.ws.tls.certresolver=myresolver"
         - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
         - traefik.http.routers.ws.middlewares=sslheader
+        - "traefik.http.routers.ws.rule=PathPrefix(`/cable`)"
+
 
     environment:
       DATABASE_URL: postgres://resume-app@postgres/resume-app
