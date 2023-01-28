@@ -57,7 +57,7 @@ services:
           # labels:
         - "traefik.enable=true"
         - "traefik.http.routers.ws.rule=Host(`ws.ia-resume.com`, `www.ws.ia-resume.com`)"
-        - "traefik.http.routers.ws.entrypoints=https"
+        - "traefik.http.routers.ws.entrypoints=websecure,wss"
         - "traefik.http.routers.ws.tls.certresolver=myresolver"
         - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
         - traefik.http.routers.ws.middlewares=sslheader
