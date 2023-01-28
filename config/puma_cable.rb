@@ -47,7 +47,7 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 
 puts ">>>>>>>>>>>>>>>>>>>>"
 # ssl_bind '0.0.0.0', '28082', { key: "./config/server.key", cert: "./config/server.crt" }
-bind "ssl://0.0.0.0:28082?key=./config/server.key&cert=./config/server.crt&verify_mode=none&ca=path_to_root_bundle.crt"
+bind "ssl://0.0.0.0:28082?key=./config/server.key&cert=./config/server.crt"
 
 # if ssl_key && ssl_cert
 #   bind "ssl://#{ip_addr}:#{port}?key=#{ssl_key}&cert=#{ssl_cert}"
