@@ -2,4 +2,12 @@ docker-compose run website rake routes
 docker-compose run website rake db:migrate
 docker-compose run website rails console
 
-ActionCable.server.broadcast "resumes_2", {body: Resume.find(2).as_json, event: 'updated'}
+ActionCable.server.broadcast "resumes:2", {body: Resume.find(2).as_json, event: 'updated'}
+
+
+wscat -c wss://api.ia-resume.com/28080
+
+wscat -c wss://ws.ia-resume.com/cable
+
+
+Add drag an drop to PDF view
