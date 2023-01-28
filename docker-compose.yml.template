@@ -1,9 +1,7 @@
 services:
   website:
     image: ruby:3.0.1-alpine
-    build: 
-      context: .
-      dockerfile: ./app/DockerFile
+    build: .
     # command: bundle exec rails s -b 0.0.0.0
     env_file:
       - ".env"
@@ -41,7 +39,7 @@ services:
       - "redis"
     build: 
       context: .
-      dockerfile: ./app/Dockerfile.cable
+      dockerfile: Dockerfile.cable
     # command: puma -p 28081 -C config/puma_cable.rb
     ports:
       - "28080:28080"
@@ -62,15 +60,6 @@ services:
       - ".:/app"
     env_file:
       - ".env"
-
-  nginx:
-    build:
-      context: .
-      dockerfile: ./web/DockerFile
-    depends_on:
-      - website
-    ports:
-      - 80:80
 
 volumes:
   redis:
