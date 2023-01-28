@@ -10,6 +10,7 @@ services:
       - "traefik.http.routers.api.rule=Host(`api.ia-resume.com`, `www.api.ia-resume.com`)"
       - "traefik.http.routers.api.entrypoints=websecure"
       - "traefik.http.routers.api.tls.certresolver=myresolver"
+      - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto = https"
 
     image: ruby:3.0.1-alpine
     build: 
