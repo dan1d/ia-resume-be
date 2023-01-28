@@ -39,6 +39,8 @@ module IaResumeBe
     config.hosts << "www.api.ia-resume.com"
     config.hosts << "api.ia-resume.com:28080"
     config.hosts << "www.api.ia-resume.com:28080"
+    config.hosts << "ws.ia-resume.com"
+    config.hosts << "www.ws.ia-resume.com"
     config.action_cable.url = [/ws:\/\/*/, /wss:\/\/*/]
     config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
     config.force_ssl = true
