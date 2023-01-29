@@ -1,4 +1,0 @@
-FROM ruby:3.0.1-alpine
-
-CMD puma -C config/puma_cable.rb
-

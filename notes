@@ -11,3 +11,8 @@ wscat -c wss://ws.ia-resume.com/cable
 
 
 Add drag an drop to PDF view
+
+
+ResumesChannel.broadcast_to "resumes:4", {}
+
+ActionCable.server.broadcast "resumes:4", {body: {}, event: 'updated'}

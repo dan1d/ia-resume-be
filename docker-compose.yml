@@ -1,23 +1,15 @@
 services:
   api:
     labels:
-      # - 'traefik.enable=true'
-      # - 'traefik.http.routers.website.rule=Host(`api.ia-resume.com, www.api.ia-resume.com`)'
-      # - 'traefik.http.routers.website.tls=true'
-      # - 'traefik.http.routers.website.tls.certresolver=lets-encrypt'
-        # labels:
       - "traefik.enable=true"
       - "traefik.http.routers.api.rule=Host(`api.ia-resume.com`, `www.api.ia-resume.com`)"
       - "traefik.http.routers.api.entrypoints=websecure,ws,wss"
       - "traefik.http.routers.api.tls.certresolver=myresolver"
       - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
-
-
     image: ruby:3.0.1-alpine
     build: 
       context: .
-      dockerfile: ./docker/app/Dockerfile
-    # command: bundle exec rails s -b 0.0.0.0
+      dockerfile: ./docker/Dockerfile
     env_file:
       - ".env"
     ports:
@@ -25,10 +17,6 @@ services:
       - '9292:9292'
     container_name: api-ruby-resume
     environment:
-      VIRTUAL_HOST: api.ai-resume.com, www.api.ai-resume.com
-      VIRTUAL_PORT: 3000
-      LETSENCRYPT_HOST: api.ai-resume.com, www.api.ai-resume.com
-      LETSENCRYPT_EMAIL: danielfromarg@gmail.com
       DATABASE_URL: postgres://resume-app@postgres/resume-app
       PORT: 3000
       RAILS_ENV: production
@@ -50,11 +38,6 @@ services:
 
   cable:
     labels:
-        # - 'traefik.enable=true'
-        # - 'traefik.http.routers.website.rule=Host(`api.ia-resume.com, www.api.ia-resume.com`)'
-        # - 'traefik.http.routers.website.tls=true'
-        # - 'traefik.http.routers.website.tls.certresolver=lets-encrypt'
-          # labels:
         - "traefik.enable=true"
         - "traefik.http.routers.ws.rule=Host(`ws.ia-resume.com`, `www.ws.ia-resume.com`)"
         - "traefik.http.routers.ws.entrypoints=websecure,wss"
@@ -62,8 +45,6 @@ services:
         - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
         - traefik.http.routers.ws.middlewares=sslheader
         - "traefik.http.routers.ws.rule=PathPrefix(`/cable`)"
-
-
     environment:
       DATABASE_URL: postgres://resume-app@postgres/resume-app
       PORT: 28080
@@ -72,8 +53,8 @@ services:
       - "redis"
     build: 
       context: .
-      dockerfile: ./docker/app/Dockerfile.cable
-    # command: puma -p 28081 -C config/puma_cable.rb
+      dockerfile: ./docker/Dockerfile.cable
+
     ports:
       - "28080:28080"
     volumes:
@@ -90,21 +71,12 @@ services:
       - "redis"
     build: 
       context: .
-      dockerfile: ./docker/app/Dockerfile
+      dockerfile: ./docker/Dockerfile
     command: sidekiq -C config/sidekiq.yml
     volumes:
       - ".:/app"
     env_file:
       - ".env"
-
-  # nginx:
-  #   build:
-  #     context: .
-  #     dockerfile: ./docker/web/Dockerfile
-  #   depends_on:
-  #     - website
-  #   ports:
-  #     - 80:80
 
 volumes:
   redis:

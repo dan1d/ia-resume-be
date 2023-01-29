@@ -1,7 +1,7 @@
 class ResumesChannel < ApplicationCable::Channel
   def subscribed
     stop_all_streams
-    stream_from "resumes:#{params[:id]}"
+    stream_from "resumes:#{params[:resume_id]}"
   end
 
   def unsubscribed
